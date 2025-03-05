@@ -1,0 +1,28 @@
+// puzzle solver functions
+package puzzle
+
+import (
+	"fmt"
+)
+
+func (p Puzzle) RejectSingles() {
+	fmt.Println(p.PrettyPrint())
+	for cellNo := range 81 {
+		cell := p.GetCell(cellNo)
+		if cell.Value == nil {
+			continue
+		}
+
+		val := *cell.Value
+		coords := CoordinatesFromIndex(cellNo)
+		rowContainer := p.rows[coords.row]
+		for rowCell := range rowContainer {
+			if rowCell != cell {
+				rowCell.RejectedValues[val] == true
+				rowCell.PossibleValues[val] == true
+			}
+		}
+
+	}
+
+}
